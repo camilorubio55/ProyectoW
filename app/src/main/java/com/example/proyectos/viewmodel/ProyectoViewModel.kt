@@ -14,6 +14,6 @@ class ProyectoViewModel: ViewModel() {
     }
 
     fun obtenerProyectos(): MutableLiveData<List<Proyecto>> {
-        return  proyectoObservable!!.obtenerProyectos()
+        return  proyectoObservable.obtenerProyectos()
     }
 }

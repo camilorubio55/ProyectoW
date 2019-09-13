@@ -7,6 +7,7 @@ import retrofit2.http.POST
 
 interface EndPoints {
 
-    @POST("GetAllProyecto.php")
-    fun getList(): Call<JsonObject>
+    @POST("codigophp/API2/Controller/GetAllProyecto.php")
+    fun getList(): Call<ArrayList<Proyecto>>
+
 }

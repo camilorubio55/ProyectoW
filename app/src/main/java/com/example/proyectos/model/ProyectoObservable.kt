@@ -12,6 +12,6 @@ class ProyectoObservable: BaseObservable() {
     }
 
     fun obtenerProyectos(): MutableLiveData<List<Proyecto>> {
-        return proyectoRepositorioImpl!!.obtenerProyectos()
+        return proyectoRepositorioImpl.obtenerProyectos()
     }
 }

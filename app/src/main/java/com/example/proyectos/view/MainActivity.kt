@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     fun setupListUpdate(){
         proyectoViewModel?.llamarProyectos()
         proyectoViewModel?.obtenerProyectos()?.observe(this, Observer {proyecto: List<Proyecto> ->
-            Log.w("PROYECTO",proyecto.get(0).titulo)
+            Log.w("PROYECTO",proyecto.get(0).success)
         })
 
     }
