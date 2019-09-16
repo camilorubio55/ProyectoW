@@ -11,7 +11,7 @@ class ProyectoObservable: BaseObservable() {
         proyectoRepositorioImpl?.llamarProyectosAPI()
     }
 
-    fun obtenerProyectos(): MutableLiveData<List<Proyecto>> {
+    fun obtenerProyectos(): MutableLiveData<ArrayList<Proyecto>> {
         return proyectoRepositorioImpl.obtenerProyectos()
     }
 }

@@ -6,45 +6,41 @@ import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import com.google.gson.JsonElement
 
 class ProyectoRepositorioImpl() {
 
-    private var proyectos = MutableLiveData<List<Proyecto>>()
+    private var proyectos = MutableLiveData<ArrayList<Proyecto>>()
 
     fun llamarProyectosAPI(){
 
-        var proyectosList: ArrayList<Proyecto>? = ArrayList<Proyecto>()
-        //var proyect: ArrayList<Proyecto> = ArrayList<Proyecto>()
+        var mAPIService: APIService?
 
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.0.71:81/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+        mAPIService = APIUtils.apiService
 
-        val endPoint = retrofit.create(EndPoints::class.java)
+        try {
+            var jsonObject: JsonObject = JsonObject()
+            jsonObject.addProperty("usuid","1")
+            println("-- respuesta ${jsonObject}")
 
-        endPoint.getList().enqueue(object : Callback<ArrayList<Proyecto>> {
-            override fun onFailure(call: Call<ArrayList<Proyecto>>, t: Throwable) {
-                d("hola", "onFailure")
-                t.printStackTrace()
-            }
 
-            override fun onResponse(call: Call<ArrayList<Proyecto>>, response: Response<ArrayList<Proyecto>>) {
-                val proyect = response.body()
-                println("--- ola ${proyect?.get(0)?.success}")
-                //proyectosList?.add(proyect)
-                proyectos.value = proyect
-                println("--- ola2 ${proyectos.value?.get(0)?.success}")
+            mAPIService!!.parametrosGetAllProyectos(jsonObject).enqueue(object : Callback<ArrayList<Proyecto>> {
+                override fun onFailure(call: Call<ArrayList<Proyecto>>, t: Throwable) {
+                    d("--- respuestaonF", "onFailure")
+                    t.printStackTrace()
+                }
 
-            }
-
-        })
+                override fun onResponse(call: Call<ArrayList<Proyecto>>, response: Response<ArrayList<Proyecto>>) {
+                    val proyect = response.body()
+                    println("--- respuestaonR ${proyect.toString()}")
+                    proyectos.value = proyect
+                }
+            })
+        }catch (e: Exception){
+            e.stackTrace
+        }
     }
 
-    fun obtenerProyectos(): MutableLiveData<List<Proyecto>>{
+    fun obtenerProyectos(): MutableLiveData<ArrayList<Proyecto>>{
         return proyectos
     }
 }

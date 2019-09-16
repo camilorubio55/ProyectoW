@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        supportActionBar?.hide()
+        //supportActionBar?.hide()
 
         setupBindings(savedInstanceState)
     }
@@ -32,8 +32,9 @@ class MainActivity : AppCompatActivity() {
 
     fun setupListUpdate(){
         proyectoViewModel?.llamarProyectos()
-        proyectoViewModel?.obtenerProyectos()?.observe(this, Observer {proyecto: List<Proyecto> ->
-            Log.w("PROYECTO",proyecto.get(0).success)
+        proyectoViewModel?.obtenerProyectos()?.observe(this, Observer {proyecto: ArrayList<Proyecto> ->
+            //Log.w("PROYECTO",proyecto.get(0).titulo)
+            proyectoViewModel?.setProyectosInRecyclesAdapter(proyecto)
         })
 
     }
