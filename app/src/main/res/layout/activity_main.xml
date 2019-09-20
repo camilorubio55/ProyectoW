@@ -9,6 +9,7 @@
             type="com.example.proyectos.viewmodel.ProyectoViewModel" />
     </data>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -26,4 +27,6 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:setAdapter="@{model.getRecyclerProyectosAdapter}"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </layout>

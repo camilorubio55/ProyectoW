@@ -1,12 +1,16 @@
 package com.example.proyectos.view
 
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.example.proyectos.BR
+import com.example.proyectos.R
 import com.example.proyectos.model.Proyecto
 import com.example.proyectos.viewmodel.ProyectoViewModel
 
@@ -44,6 +48,7 @@ class RecyclerProyectoAdapter(var proyectoViewModel: ProyectoViewModel, var reso
     class TarjetaProyectoHolder(binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
         private var binding: ViewDataBinding? = null
+        //private var listener: View.ClickListener? = null
 
         init {
             this.binding = binding
@@ -56,7 +61,14 @@ class RecyclerProyectoAdapter(var proyectoViewModel: ProyectoViewModel, var reso
         }
 
         override fun onClick(p0: View?) {
+            if(p0?.id == R.id.tarjeta)
+                Log.e("Error","--iguales")
+            //println("-- son iguales")
 
+            val context = p0?.context
+            val mostrardetalle = Intent(context, DetalleProyectoActivity::class.java)
+            mostrardetalle.putExtra("proyecto","ko")
+            context?.startActivity(mostrardetalle)
         }
 
     }

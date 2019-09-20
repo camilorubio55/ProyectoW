@@ -28,6 +28,7 @@ class ProyectoViewModel: ViewModel() {
 
     fun getRecyclerProyectosAdapter (): RecyclerProyectoAdapter?{
         recyclerProyectoAdapter = RecyclerProyectoAdapter(this, R.layout.tarjetaproyecto)
+        //println("---recyclerdata  ${recyclerProyectoAdapter.toString()}")
         return recyclerProyectoAdapter
     }
 
